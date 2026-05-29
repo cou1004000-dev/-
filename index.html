@@ -3,287 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snoopy & Me - Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Snoopy World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* [1. 기본 설정] 스누피의 깔끔한 화이트 테마 */
-        :root {
-            --snoopy-red: #e63946;
-            --snoopy-black: #1a1a1a;
-            --snoopy-white: #ffffff;
-            --snoopy-beige: #fdfdfd;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* 전체 분위기를 따뜻하고 귀여운 스누피 만화 톤으로 설정 */
         body {
-            background-color: var(--snoopy-white);
-            font-family: 'Noto Sans KR', sans-serif;
-            color: var(--snoopy-black);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-            overflow-x: hidden;
-        }
-
-        /* [2. 프로필 섹션] 증명사진을 귀엽게 배치 */
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-
-        .profile-container {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        /* 증명사진 프레임 (작고 귀여운 폴라로이드 스타일) */
-        .id-photo {
-            width: 100px;
-            height: 125px;
-            border: 3px solid var(--snoopy-black);
-            border-radius: 5px;
-            background-color: #fff;
-            padding: 5px;
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-            object-fit: cover;
-            transform: rotate(-3deg); /* 살짝 기울여서 귀여움 강조 */
-        }
-
-        /* 사진 옆에서 하트를 띄우는 스누피 장식 (가상 요소) */
-        .profile-container::after {
-            content: '❤';
-            position: absolute;
-            top: -10px;
-            right: -15px;
-            color: var(--snoopy-red);
-            font-size: 1.5rem;
-            animation: float 2s infinite ease-in-out;
-        }
-
-        header h1 {
+            background-color: #fffdf9; /* 따뜻한 아이보리색 바탕 */
+            color: #1a1a1a;
             font-family: 'Gaegu', cursive;
-            font-size: 2.5rem;
-            margin-top: 10px;
+            font-size: 20px;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        header p {
-            font-size: 0.9rem;
-            color: #888;
-            letter-spacing: 2px;
-        }
-
-        /* [3. 메인 대시보드] 2x2 그리드 */
-        .dashboard {
-            max-width: 900px;
+        .container {
+            max-width: 700px;
             width: 100%;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        /* [메인 프로필] 스누피와 증명사진이 함께 있는 공간 */
+        .main-profile {
+            background: #ffffff;
+            border: 4px solid #1a1a1a;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 8px 8px 0px #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 25px;
-        }
-
-        /* 스누피 특유의 굵은 블랙 라인 카드 디자인 */
-        .card {
-            background: var(--snoopy-beige);
-            border: 3px solid var(--snoopy-black);
-            border-radius: 20px;
-            padding: 20px;
             position: relative;
-            box-shadow: 6px 6px 0px var(--snoopy-black);
-            transition: all 0.2s;
         }
 
-        .card:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 9px 9px 0px var(--snoopy-red);
+        /* 앙증맞고 작게 줄인 귀여운 증명사진 프레임 */
+        .my-photo {
+            width: 90px;
+            height: 115px;
+            border: 3px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 5px;
+            background: #fff;
+            transform: rotate(-4deg); /* 살짝 삐딱하게 해서 귀여움 추가 */
+            box-shadow: 4px 4px 0px #e63946;
         }
 
-        .card-title {
-            font-family: 'Gaegu', cursive;
-            font-size: 1.5rem;
-            font-weight: bold;
+        .my-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .profile-desc h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        /* 두근두근 통통 튀는 하트 애니메이션 */
+        .snoopy-heart {
+            color: #e63946;
+            display: inline-block;
+            animation: bounce 0.8s infinite alternate;
+        }
+
+        /* [카드 스타일] 만화책 칸처럼 굵고 둥글게 */
+        .snoopy-card {
+            background: #ffffff;
+            border: 4px solid #1a1a1a;
+            border-radius: 28px;
+            padding: 25px;
+            box-shadow: 8px 8px 0px #1a1a1a;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        /* 마우스를 올리면 카드가 들리면서 테두리가 하트색(레드)으로! */
+        .snoopy-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px #e63946;
+        }
+
+        .card-header {
+            font-size: 1.8rem;
+            font-weight: 700;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
-            border-bottom: 2px dashed var(--snoopy-black);
+            border-bottom: 3px dashed #1a1a1a;
             padding-bottom: 5px;
         }
 
-        .card-title i {
-            color: var(--snoopy-red);
+        .card-header i {
+            color: #e63946;
         }
 
-        /* [4. 섹션별 스타일] */
-        /* 날씨 */
-        .weather-box {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 10px;
-        }
-        .weather-temp {
-            font-size: 2.2rem;
-            font-weight: 700;
-        }
-        .weather-desc {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* 뉴스 리스트 */
-        .list-style {
+        /* 리스트 모양을 스누피 발바닥으로 변경 */
+        .info-list {
             list-style: none;
+            padding-left: 5px;
         }
-        .list-style li {
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            padding-left: 15px;
-            position: relative;
-            line-height: 1.4;
+
+        .info-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .list-style li::before {
-            content: '🐾'; /* 스누피 발바닥 포인트 */
-            position: absolute;
-            left: -5px;
-            font-size: 0.7rem;
+
+        .info-list li::before {
+            content: "🐾";
+            font-size: 1.1rem;
         }
-        .list-style a {
+
+        .info-list a {
+            color: #1a1a1a;
             text-decoration: none;
-            color: var(--snoopy-black);
         }
-        .list-style a:hover {
-            color: var(--snoopy-red);
+
+        .info-list a:hover {
+            color: #e63946;
             text-decoration: underline;
         }
 
-        /* 통계바 */
-        .stat-bar {
-            margin-top: 10px;
-        }
-        .bar-label {
-            font-size: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 3px;
-        }
-        .bar-bg {
-            height: 12px;
-            background: #eee;
-            border: 2px solid var(--snoopy-black);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .bar-fill {
-            height: 100%;
-            background: var(--snoopy-red);
-            width: 0%;
-            transition: width 1.5s ease-in-out;
+        /* [예방접종 통계 그래프] 완전 귀엽게 커스텀 */
+        .graph-area {
+            margin-top: 20px;
         }
 
-        /* [5. 애니메이션 및 푸터] */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .bar-group {
+            margin-bottom: 15px;
+        }
+
+        .bar-title {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .bar-bg {
+            background: #f0f0f0;
+            border: 3px solid #1a1a1a;
+            border-radius: 15px;
+            height: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            background: #e63946; /* 스누피 레드 */
+            height: 100%;
+            width: 0;
+            border-radius: 10px 0 0 10px;
+            transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
+        }
+
+        .bar-fill.black {
+            background: #1a1a1a;
+        }
+
+        /* 하트 튀는 애니메이션 효과 */
+        @keyframes bounce {
+            from { transform: translateY(0) scale(1); }
+            to { transform: translateY(-8px) scale(1.1); }
         }
 
         footer {
-            margin-top: 60px;
-            font-family: 'Gaegu', cursive;
-            color: #ccc;
+            margin-top: 50px;
+            text-align: center;
             font-size: 1.2rem;
-        }
-
-        /* 모바일 대응 */
-        @media (max-width: 700px) {
-            .dashboard { grid-template-columns: 1fr; }
+            color: #888;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="profile-container">
-            <img src="https://raw.githubusercontent.com/cou1004000-dev/-/main/%EC%A6%9D%EB%AA%85%EC%82%AC%EC%A7%84.png" alt="내 증명사진" class="id-photo">
-        </div>
-        <h1>반가워요! 오늘의 기록</h1>
-        <p>HOME • BUSAN • PKNU • WELFARE</p>
-    </header>
+    <div class="container">
 
-    <div class="dashboard">
-        
-        <div class="card">
-            <div class="card-title"><i class="fa-solid fa-sun"></i> 부산의 오늘 날씨</div>
-            <div class="weather-box">
-                <i class="fa-solid fa-cloud-sun" style="font-size: 3rem;"></i>
-                <div style="text-align: right;">
-                    <div class="weather-temp">28°C</div>
-                    <div class="weather-desc">맑음 (초여름 더위)<br>남구 대연동 기준</div>
+        <div class="main-profile">
+            <div class="photo-frame my-photo">
+                <img src="https://raw.githubusercontent.com/cou1004000-dev/-/main/%EC%A6%9D%EB%AA%85%EC%82%AC%EC%A7%84.png" alt="내 증명사진">
+            </div>
+            <div class="profile-desc">
+                <h1>cou1004000 <span class="snoopy-heart">❤</span></h1>
+                <p>스누피와 함께하는 말랑말랑 대시보드 🐾</p>
+            </div>
+        </div>
+
+        <div class="snoopy-card">
+            <div class="card-header">
+                <i class="fa-solid fa-cloud-sun"></i> 오늘의 날씨 쪽지
+            </div>
+            <div style="display: flex; align-items: center; gap: 20px; padding: 10px;">
+                <i class="fa-solid fa-sun" style="font-size: 3rem; color: #e63946;"></i>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 700;">28°C</div>
+                    <div style="color: #555;">부산 남구 대연동은 지금 맑은 초여름 날씨! ☀️</div>
                 </div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-title"><i class="fa-solid fa-map-pin"></i> 부산 이슈 뉴스</div>
-            <ul class="list-style">
-                <li><a href="#">부산시, 2026년 여름철 방재기상정책 시행 발표</a></li>
-                <li><a href="#">자외선 '위험' 수준... 초여름 더위 지속 주의보</a></li>
-                <li><a href="#">부산 지역 기상·기후테크 창업 아이디어 공모전 개최</a></li>
+        <div class="snoopy-card">
+            <div class="card-header">
+                <i class="fa-solid fa-heart"></i> 부산에서 일어나는 일
+            </div>
+            <ul class="info-list">
+                <li><a href="#">대중교통 할인 '동백패스' 혜택이 더 커졌대요!</a></li>
+                <li><a href="#">이번 주말 광안리 드론 라이트쇼 보러 갈래?</a></li>
+                <li><a href="#">여름철 폭염 대비 고위험군 특별 보호 대책 가동</a></li>
             </ul>
         </div>
 
-        <div class="card">
-            <div class="card-title"><i class="fa-solid fa-graduation-cap"></i> 부경대 소식</div>
-            <ul class="list-style">
-                <li><a href="#">국립부경대 개교 80주년 비전 선포식 개최</a></li>
-                <li><a href="#">2026 QS 세계대학 학문 분야별 평가 5개 분야 진입</a></li>
-                <li><a href="#">개교 80주년 및 통합 30주년 기념 지역사회 행사</a></li>
+        <div class="snoopy-card">
+            <div class="card-header">
+                <i class="fa-solid fa-graduation-cap"></i> 국립부경대학교 소식
+            </div>
+            <ul class="info-list">
+                <li><a href="#">축하해요! 부경대학교 개교 80주년 선포식 개최</a></li>
+                <li><a href="#">글로컬대학30 선정을 위한 대대적인 교육 혁신안 추진</a></li>
+                <li><a href="#">캠퍼스 혁신파크 착공 완료! 첨단 산학연 단지가 생겨요</a></li>
             </ul>
         </div>
 
-        <div class="card">
-            <div class="card-title"><i class="fa-solid fa-heart-pulse"></i> 복지 지표 (2026)</div>
-            <div class="stat-bar">
-                <div class="bar-label"><span>사회복지시설 평가지표 달성률</span><span>85%</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
+        <div class="snoopy-card">
+            <div class="card-header">
+                <i class="fa-solid fa-chart-bar"></i> 예방접종 통계 그래프
             </div>
-            <div class="stat-bar">
-                <div class="bar-label"><span>지역사회 디지털 리터러시 교육 비중</span><span>62%</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 62%;"></div></div>
+            <div style="font-size: 1.1rem; margin-bottom: 15px; color:#555;">
+                📊 부산과 전국의 코로나19 예방접종 현황을 비교해 봐요!
             </div>
-            <div class="stat-bar" style="margin-top: 5px; font-size: 0.75rem; color: #888;">
-                * 2026 사회복지시설 평가지표 기준
+            
+            <div class="graph-area">
+                <div class="bar-group">
+                    <div class="bar-title"><span>부산지역 접종률</span><span>40.1%</span></div>
+                    <div class="bar-bg"><div class="bar-fill" data-width="40.1%"></div></div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-title"><span>전국 평균 접종률</span><span>42.7%</span></div>
+                    <div class="bar-bg"><div class="bar-fill black" data-width="42.7%"></div></div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-title"><span>백신의 입원 예방 효과</span><span>44.8%</span></div>
+                    <div class="bar-bg"><div class="bar-fill" data-width="44.8%"></div></div>
+                </div>
             </div>
+            <p style="font-size: 0.85rem; color: #888; margin-top: 15px; line-height: 1.4;">
+                * 출처: 질병관리청 국가예방접종 최신 지표<br>
+                접종 시 중증화 및 입원 예방 효과가 44% 이상으로 아주 뚜렷하게 증명되고 있습니다.
+            </p>
         </div>
 
     </div>
 
     <footer>
-        HAPPY SNOOPY DAY with cou1004000-dev 🐾
+        <p>HAVE A HAPPY SNOOPY DAY! ❤ cou1004000-dev</p>
     </footer>
 
     <script>
-        // 페이지 로드 시 통계 바 애니메이션 효과
-        window.onload = () => {
+        window.addEventListener('DOMContentLoaded', () => {
             const fills = document.querySelectorAll('.bar-fill');
-            fills.forEach(bar => {
-                const targetWidth = bar.style.width;
-                bar.style.width = '0';
-                setTimeout(() => {
-                    bar.style.width = targetWidth;
-                }, 200);
-            });
-        };
+            setTimeout(() => {
+                fills.forEach(fill => {
+                    fill.style.width = fill.getAttribute('data-width');
+                });
+            }, 200);
+        });
     </script>
 </body>
 </html>
