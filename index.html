@@ -1,16 +1,15 @@
-<!-- 파일명: index.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>스누피의 하루</title>
 
+  <!-- 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
 
@@ -20,352 +19,236 @@
       box-sizing:border-box;
     }
 
-    html{
-      scroll-behavior:smooth;
-    }
-
     body{
-      font-family:'Pretendard', sans-serif;
-      background:#ededed;
-      color:#222;
+      font-family:'Gaegu', cursive;
+      background:#fdf9f2;
+      color:#4a3b2f;
       overflow-x:hidden;
     }
 
-    a{
-      text-decoration:none;
-      color:inherit;
-    }
-
-    .container{
-      width:90%;
-      max-width:1300px;
-      margin:auto;
-    }
-
-    /* ---------------- HEADER ---------------- */
+    /* 상단 메뉴 */
 
     header{
-      position:fixed;
-      top:0;
-      left:0;
       width:100%;
-      z-index:1000;
-      background:rgba(255,255,255,0.75);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(0,0,0,0.05);
-    }
-
-    .nav{
+      padding:28px 60px;
       display:flex;
       justify-content:space-between;
-      align-items:center;
-      padding:22px 0;
-    }
-
-    .logo{
-      font-size:32px;
-      font-weight:700;
-      color:#d53a3a;
-      letter-spacing:-1px;
-    }
-
-    .menu{
-      display:flex;
-      gap:28px;
-      font-size:16px;
-      font-weight:500;
-      color:#555;
-    }
-
-    .menu a{
-      transition:0.3s;
-    }
-
-    .menu a:hover{
-      color:#d53a3a;
-    }
-
-    /* ---------------- HERO ---------------- */
-
-    .hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding-top:120px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero::before{
-      content:'';
-      position:absolute;
-      width:500px;
-      height:500px;
-      border-radius:50%;
-      background:#ffd7d7;
-      top:-180px;
-      right:-180px;
-      opacity:0.6;
-    }
-
-    .hero::after{
-      content:'';
-      position:absolute;
-      width:450px;
-      height:450px;
-      border-radius:50%;
-      background:#ffffff;
-      bottom:-200px;
-      left:-180px;
-      opacity:0.8;
-    }
-
-    .hero-inner{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:60px;
       align-items:center;
       position:relative;
       z-index:10;
     }
 
-    .hero-text h1{
-      font-size:78px;
-      line-height:1.1;
-      margin-bottom:24px;
-      letter-spacing:-3px;
+    .logo{
+      font-size:2.4rem;
+      font-weight:bold;
     }
 
-    .hero-text span{
-      color:#d53a3a;
-    }
-
-    .hero-text p{
-      font-size:20px;
-      color:#666;
-      line-height:1.9;
-      margin-bottom:35px;
-    }
-
-    .hero-btn{
-      display:inline-block;
-      background:#d53a3a;
-      color:white;
-      padding:16px 34px;
-      border-radius:999px;
-      font-weight:600;
-      transition:0.3s;
-      box-shadow:0 10px 25px rgba(213,58,58,0.25);
-    }
-
-    .hero-btn:hover{
-      transform:translateY(-5px);
-    }
-
-    .hero-image{
+    nav{
       display:flex;
-      justify-content:center;
-      position:relative;
+      gap:45px;
     }
 
-    .hero-image img{
-      width:380px;
-      border-radius:30px;
-      animation:float 4s ease-in-out infinite;
+    nav a{
+      text-decoration:none;
+      color:#4a3b2f;
+      font-size:1.25rem;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      transform:translateY(-3px);
+    }
+
+    /* 프로필 */
+
+    .profile{
+      position:fixed;
+      top:20px;
+      right:25px;
+      z-index:999;
+    }
+
+    .profile img{
+      width:82px;
+      height:82px;
+      border-radius:50%;
+      object-fit:cover;
+      border:4px solid white;
+      box-shadow:0 5px 15px rgba(0,0,0,0.15);
+      transition:0.3s;
+    }
+
+    .profile img:hover{
+      transform:scale(1.08);
+    }
+
+    /* 메인 */
+
+    .main{
+      width:100%;
+      min-height:70vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:80px;
+      padding:30px 80px;
+      flex-wrap:wrap;
+    }
+
+    /* 왼쪽 스누피 */
+
+    .snoopy-box img{
+      width:430px;
+      animation:float 3s ease-in-out infinite;
     }
 
     @keyframes float{
+
       0%{
         transform:translateY(0px);
       }
 
       50%{
-        transform:translateY(-15px);
+        transform:translateY(-12px);
       }
 
       100%{
         transform:translateY(0px);
       }
+
     }
 
-    /* ---------------- SECTION ---------------- */
+    /* 오른쪽 텍스트 */
 
-    section{
-      padding:110px 0;
+    .text-box{
+      max-width:550px;
     }
 
-    .section-title{
-      text-align:center;
-      margin-bottom:70px;
+    .hello{
+      font-size:2rem;
+      margin-bottom:10px;
     }
 
-    .section-title h2{
-      font-size:52px;
-      margin-bottom:14px;
-      letter-spacing:-2px;
+    .title{
+      font-size:5rem;
+      line-height:1.2;
+      margin-bottom:25px;
     }
 
-    .section-title p{
-      color:#666;
-      font-size:18px;
+    .desc{
+      font-size:1.6rem;
+      opacity:0.8;
+      margin-bottom:35px;
     }
 
-    .grid{
+    .btn{
+      display:inline-block;
+      padding:15px 35px;
+      background:#b7d9ff;
+      color:#fff;
+      border-radius:40px;
+      text-decoration:none;
+      font-size:1.2rem;
+      transition:0.3s;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .btn:hover{
+      transform:translateY(-5px);
+    }
+
+    /* 카드 */
+
+    .cards{
+      width:90%;
+      margin:auto;
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:28px;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:25px;
+      padding-bottom:90px;
     }
 
     .card{
       background:white;
-      border-radius:35px;
+      border-radius:30px;
       padding:35px;
-      box-shadow:0 15px 35px rgba(0,0,0,0.05);
-      transition:0.35s;
-      border:2px solid transparent;
+      box-shadow:0 8px 18px rgba(0,0,0,0.08);
+      transition:0.3s;
     }
 
     .card:hover{
       transform:translateY(-10px);
-      border-color:#d53a3a;
     }
 
-    .card h3{
-      color:#d53a3a;
-      font-size:28px;
-      margin-bottom:20px;
+    .card h2{
+      font-size:2rem;
+      margin-bottom:18px;
     }
 
     .card p{
-      color:#555;
-      line-height:1.9;
-      font-size:16px;
+      font-size:1.2rem;
+      line-height:1.6;
+      opacity:0.85;
     }
 
-    .weather-temp{
-      font-size:68px;
-      font-weight:700;
-      margin-bottom:20px;
+    /* 카드 색감 */
+
+    .weather{
+      border:3px solid #a8d4ff;
     }
 
-    .tag{
-      display:inline-block;
-      margin-top:18px;
-      background:#ffe3e3;
-      color:#d53a3a;
-      padding:10px 18px;
-      border-radius:999px;
-      font-size:14px;
-      font-weight:600;
+    .news{
+      border:3px solid #ffd59c;
     }
 
-    /* ---------------- STATS ---------------- */
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:25px;
+    .pknu{
+      border:3px solid #c7e7a5;
     }
 
-    .stat-box{
-      background:white;
-      border-radius:30px;
-      padding:45px 25px;
-      text-align:center;
-      box-shadow:0 15px 35px rgba(0,0,0,0.05);
-      transition:0.3s;
+    .stat{
+      border:3px solid #d8b8ff;
     }
 
-    .stat-box:hover{
-      transform:translateY(-8px);
-    }
-
-    .stat-box h3{
-      font-size:56px;
-      color:#d53a3a;
-      margin-bottom:12px;
-    }
-
-    .stat-box p{
-      color:#666;
-      line-height:1.7;
-    }
-
-    /* ---------------- FOOTER ---------------- */
+    /* footer */
 
     footer{
-      padding:70px 20px;
+      width:100%;
       text-align:center;
-      background:white;
-      border-top:1px solid rgba(0,0,0,0.05);
+      padding:35px;
+      font-size:1rem;
+      opacity:0.6;
     }
 
-    footer h3{
-      font-size:30px;
-      margin-bottom:10px;
-      color:#d53a3a;
-    }
-
-    footer p{
-      color:#666;
-      line-height:1.8;
-    }
-
-    .github-btn{
-      display:inline-block;
-      margin-top:22px;
-      padding:13px 24px;
-      border-radius:999px;
-      background:#f4f4f4;
-      transition:0.3s;
-      font-weight:600;
-    }
-
-    .github-btn:hover{
-      background:#d53a3a;
-      color:white;
-    }
-
-    /* ---------------- MOBILE ---------------- */
+    /* 반응형 */
 
     @media(max-width:900px){
 
-      .hero-inner{
-        grid-template-columns:1fr;
+      .main{
+        flex-direction:column;
         text-align:center;
+        padding-top:20px;
       }
 
-      .hero-text h1{
-        font-size:58px;
-      }
-
-      .hero-image img{
+      .snoopy-box img{
         width:280px;
       }
 
-      .menu{
-        display:none;
+      .title{
+        font-size:3.2rem;
       }
 
-    }
-
-    @media(max-width:600px){
-
-      .hero-text h1{
-        font-size:42px;
+      nav{
+        gap:18px;
       }
 
-      .hero-text p{
-        font-size:17px;
+      header{
+        flex-direction:column;
+        gap:18px;
       }
 
-      .section-title h2{
-        font-size:38px;
-      }
-
-      .card{
-        padding:28px;
+      .profile img{
+        width:65px;
+        height:65px;
       }
 
     }
@@ -375,274 +258,120 @@
 
 <body>
 
-  <!-- HEADER -->
+  <!-- 프로필 사진 -->
+  <div class="profile">
+
+    <!-- images 폴더에 profile.png 넣기 -->
+    <img src="./images/profile.png" alt="프로필">
+
+  </div>
+
+  <!-- 헤더 -->
 
   <header>
 
-    <div class="container nav">
-
-      <div class="logo">
-        🎅 스누피의 하루
-      </div>
-
-      <div class="menu">
-        <a href="#weather">날씨</a>
-        <a href="#busan">부산 이슈</a>
-        <a href="#news">부경대 뉴스</a>
-        <a href="#welfare">사회복지 통계</a>
-      </div>
-
+    <div class="logo">
+      🐾 Snoopy's Daily
     </div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Weather</a>
+      <a href="#">News</a>
+      <a href="#">Statistics</a>
+      <a href="#">About</a>
+    </nav>
 
   </header>
 
-  <!-- HERO -->
+  <!-- 메인 -->
 
-  <section class="hero">
+  <section class="main">
 
-    <div class="container hero-inner">
+    <!-- 왼쪽 스누피 -->
 
-      <div class="hero-text">
+    <div class="snoopy-box">
 
-        <h1>
-          스누피의<br>
-          <span>하루</span>
-        </h1>
+      <img
+      src="https://i.imgur.com/JR0cS0X.png"
+      alt="스누피">
 
-        <p>
-          부산의 날씨와 이슈,<br>
-          부경대학교 뉴스와 사회복지 통계를<br>
-          감성적인 디자인으로 담아낸 공간입니다.
-        </p>
+    </div>
 
-        <a href="#weather" class="hero-btn">
-          지금 둘러보기 →
-        </a>
+    <!-- 오른쪽 텍스트 -->
 
+    <div class="text-box">
+
+      <div class="hello">
+        Hello, I'm Yujin 💙
       </div>
 
-      <div class="hero-image">
+      <h1 class="title">
+        오늘도 소중한 하루!
+      </h1>
 
-        <!-- 사용자가 준 느낌의 스누피 이미지 -->
-        <img src="https://i.imgur.com/8Q0s8iT.png" alt="스누피">
+      <p class="desc">
+        스누피처럼 여유롭고 행복한 하루를 보내요 ☕
+      </p>
 
-      </div>
+      <a href="#" class="btn">
+        오늘의 한마디
+      </a>
 
     </div>
 
   </section>
 
-  <!-- WEATHER -->
+  <!-- 카드 -->
 
-  <section id="weather">
+  <section class="cards">
 
-    <div class="container">
+    <div class="card weather">
 
-      <div class="section-title">
-        <h2>☁ 오늘의 날씨</h2>
-        <p>부산 기준 오늘의 분위기</p>
-      </div>
+      <h2>🌤 오늘의 날씨</h2>
 
-      <div class="grid">
+      <p>
+        부산의 실시간 날씨와 기온을 확인해보세요.
+      </p>
 
-        <div class="card">
+    </div>
 
-          <h3>부산 날씨</h3>
+    <div class="card news">
 
-          <div class="weather-temp">
-            24°
-          </div>
+      <h2>📰 부산 이슈</h2>
 
-          <p>
-            맑음 🌤<br>
-            습도 58%<br>
-            미세먼지 좋음
-          </p>
+      <p>
+        오늘의 부산 주요 뉴스와 이슈를 한눈에!
+      </p>
 
-          <div class="tag">
-            산책하기 좋은 하루
-          </div>
+    </div>
 
-        </div>
+    <div class="card pknu">
 
-        <div class="card">
+      <h2>🎓 부경대 뉴스</h2>
 
-          <h3>오늘의 추천</h3>
+      <p>
+        부경대학교 관련 다양한 소식을 확인해보세요.
+      </p>
 
-          <p>
-            가벼운 셔츠나 후드티와 잘 어울리는 날씨예요.<br><br>
-            광안리 바다 산책이나 카페 방문을 추천합니다.
-          </p>
+    </div>
 
-        </div>
+    <div class="card stat">
 
-      </div>
+      <h2>📊 사회복지 통계</h2>
+
+      <p>
+        사회복지 관련 통계를 쉽고 빠르게 볼 수 있어요.
+      </p>
 
     </div>
 
   </section>
 
-  <!-- BUSAN -->
-
-  <section id="busan">
-
-    <div class="container">
-
-      <div class="section-title">
-        <h2>🌊 부산의 이슈</h2>
-        <p>현재 부산에서 주목받는 이야기</p>
-      </div>
-
-      <div class="grid">
-
-        <div class="card">
-
-          <h3>관광 활성화</h3>
-
-          <p>
-            부산은 야간 관광 콘텐츠와 축제를 확대하며
-            국내 대표 해양 관광도시로 성장하고 있습니다.
-          </p>
-
-        </div>
-
-        <div class="card">
-
-          <h3>청년 정책 확대</h3>
-
-          <p>
-            부산시는 청년 취업·주거 지원 정책을 확대하며
-            청년 정착을 위한 사업을 추진 중입니다.
-          </p>
-
-        </div>
-
-        <div class="card">
-
-          <h3>친환경 도시 조성</h3>
-
-          <p>
-            탄소중립을 위한 친환경 교통 정책과
-            녹지 확대 사업이 활발히 진행되고 있습니다.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- NEWS -->
-
-  <section id="news">
-
-    <div class="container">
-
-      <div class="section-title">
-        <h2>🎓 부경대 뉴스</h2>
-        <p>부경대학교의 새로운 소식</p>
-      </div>
-
-      <div class="grid">
-
-        <div class="card">
-
-          <h3>AI 교육 확대</h3>
-
-          <p>
-            부경대학교는 AI 및 데이터 기반 교육을 강화하며
-            미래 산업 인재 양성에 집중하고 있습니다.
-          </p>
-
-        </div>
-
-        <div class="card">
-
-          <h3>지역사회 연계 활동</h3>
-
-          <p>
-            지역 복지기관과 협력한 봉사활동 및
-            다양한 실천 프로그램이 운영되고 있습니다.
-          </p>
-
-        </div>
-
-        <div class="card">
-
-          <h3>학생 복지 개선</h3>
-
-          <p>
-            학생 휴게 공간 확대와 심리 상담 지원 등
-            학생 중심 복지 정책이 확대되고 있습니다.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- WELFARE -->
-
-  <section id="welfare">
-
-    <div class="container">
-
-      <div class="section-title">
-        <h2>📊 사회복지 통계</h2>
-        <p>최근 사회복지 관련 주요 흐름</p>
-      </div>
-
-      <div class="stats">
-
-        <div class="stat-box">
-          <h3>38%</h3>
-          <p>청년층 복지 관심 증가</p>
-        </div>
-
-        <div class="stat-box">
-          <h3>67%</h3>
-          <p>돌봄 서비스 만족도</p>
-        </div>
-
-        <div class="stat-box">
-          <h3>21%</h3>
-          <p>1인 가구 지원 확대</p>
-        </div>
-
-        <div class="stat-box">
-          <h3>89%</h3>
-          <p>복지 접근성 향상 체감</p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- FOOTER -->
+  <!-- footer -->
 
   <footer>
-
-    <h3>🐶 스누피의 하루</h3>
-
-    <p>
-      감성적인 색감과 스누피 무드로 제작한 GitHub Pages 홈페이지
-    </p>
-
-    <a
-      class="github-btn"
-      href="https://github.com/cou1004000-dev/-"
-      target="_blank"
-    >
-      GitHub 바로가기
-    </a>
-
+    © 2026 Snoopy's Daily · Made with love 🤍
   </footer>
 
 </body>
