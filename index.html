@@ -61,7 +61,13 @@ a{text-decoration:none}
 @media(max-width:768px){.taskbar-nav{display:none}}
 
 /* WINDOW */
-.window-wrap{max-width:1120px;margin:1.5rem auto;padding:0 1rem;position:relative;z-index:1}
+.window-wrap{max-width:1200px;margin:1.5rem auto;padding:0 1rem;position:relative;z-index:1}
+.workspace-shell{display:grid;grid-template-columns:220px minmax(0,1fr);gap:1.25rem;align-items:start}
+@media(max-width:900px){.workspace-shell{grid-template-columns:1fr}}
+.sidebar-window{position:sticky;top:62px}
+@media(max-width:900px){.sidebar-window{position:static}}
+.sidebar-window .window-body{padding:1rem}
+.content-window{min-width:0}
 .window{background:var(--win-bg);border:2px solid var(--win-border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:1.5rem;transition:box-shadow .2s}
 .window:hover{box-shadow:var(--shadow-hover)}
 .window-titlebar{background:var(--win-title);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;user-select:none}
@@ -101,14 +107,19 @@ a{text-decoration:none}
 @keyframes stripBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 /* CAT NAV */
-.cat-nav{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;padding:1rem 0}
-.cat-btn{background:linear-gradient(135deg,#fff5f8,#ffe8f2);border:2px solid var(--pink-mid);border-radius:var(--radius);padding:.75rem 1rem;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;font-family:'Nanum Gothic',sans-serif;transition:transform .18s,box-shadow .18s,border-color .18s,background .18s;min-width:76px}
+.cat-nav{display:flex;flex-direction:column;gap:.75rem}
+.cat-btn{background:linear-gradient(135deg,#fff5f8,#ffe8f2);border:2px solid var(--pink-mid);border-radius:var(--radius);padding:.85rem .95rem;display:grid;grid-template-columns:40px 1fr;align-items:center;gap:.7rem;cursor:pointer;font-family:'Nanum Gothic',sans-serif;text-align:left;width:100%;transition:transform .18s,box-shadow .18s,border-color .18s,background .18s}
 [data-theme="dark"] .cat-btn{background:linear-gradient(135deg,#2a1020,#3d1a2e)}
-.cat-btn:hover,.cat-btn.active{transform:translateY(-5px);box-shadow:0 8px 24px rgba(255,107,157,.28);border-color:var(--pink-main);background:linear-gradient(135deg,#ffe8f2,#ffd0e5)}
+.cat-btn:hover,.cat-btn.active{transform:translateX(5px);box-shadow:0 8px 24px rgba(255,107,157,.28);border-color:var(--pink-main);background:linear-gradient(135deg,#ffe8f2,#ffd0e5)}
 [data-theme="dark"] .cat-btn:hover,[data-theme="dark"] .cat-btn.active{background:linear-gradient(135deg,#3d1a2e,#5a2040)}
 .cat-btn.active{border-color:var(--pink-dark)}
-.cat-emoji{font-size:1.7rem}
-.cat-label{font-size:.68rem;font-weight:700;color:var(--pink-dark);white-space:nowrap}
+.cat-emoji{font-size:1.7rem;display:flex;align-items:center;justify-content:center}
+.cat-text{display:flex;flex-direction:column;gap:2px}
+.cat-label{font-size:.75rem;font-weight:800;color:var(--pink-dark);white-space:nowrap}
+.cat-sub{font-size:.66rem;color:var(--text-muted);font-weight:700}
+.sidebar-note{margin-top:1rem;background:rgba(255,107,157,.08);border:1.5px dashed var(--pink-mid);border-radius:var(--radius-sm);padding:.85rem;font-size:.73rem;color:var(--text-mid);line-height:1.6}
+@media(max-width:900px){.cat-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.cat-btn{grid-template-columns:34px 1fr}.cat-btn:hover,.cat-btn.active{transform:translateY(-3px)}}
+@media(max-width:520px){.cat-nav{grid-template-columns:1fr}}
 
 /* SECTION PANELS */
 .section-panel{display:none}
@@ -263,24 +274,39 @@ footer .fk{font-size:1.3rem;display:block;margin-bottom:5px}
   <span>🌷</span><span>🎀</span><span>✨</span><span>🐱</span><span>💖</span>
 </div>
 
-<!-- MAIN WINDOW -->
-<article class="window" id="win-main">
-  <div class="window-titlebar">
-    <div class="window-title"><span>📁</span> 나의 기록들 🌸</div>
-    <div class="window-btns" aria-hidden="true">
-      <button class="win-btn close" tabindex="-1"></button>
-      <button class="win-btn min" tabindex="-1"></button>
-      <button class="win-btn max" tabindex="-1"></button>
+<!-- MAIN WORKSPACE -->
+<div class="workspace-shell">
+  <aside class="window sidebar-window" id="win-sidebar">
+    <div class="window-titlebar">
+      <div class="window-title"><span>📂</span> 카테고리 탐색기 🎀</div>
+      <div class="window-btns" aria-hidden="true">
+        <button class="win-btn close" tabindex="-1"></button>
+        <button class="win-btn min" tabindex="-1"></button>
+        <button class="win-btn max" tabindex="-1"></button>
+      </div>
     </div>
-  </div>
-  <div class="window-body">
-    <nav class="cat-nav" aria-label="카테고리">
-      <button class="cat-btn active" onclick="openSection('weather')" id="catbtn-weather"><span class="cat-emoji">🌤️</span><span class="cat-label">현재 날씨</span></button>
-      <button class="cat-btn" onclick="openSection('busan')" id="catbtn-busan"><span class="cat-emoji">🌊</span><span class="cat-label">부산 이슈</span></button>
-      <button class="cat-btn" onclick="openSection('pknu')" id="catbtn-pknu"><span class="cat-emoji">🎓</span><span class="cat-label">부경대 뉴스</span></button>
-      <button class="cat-btn" onclick="openSection('welfare')" id="catbtn-welfare"><span class="cat-emoji">💗</span><span class="cat-label">사회복지 통계</span></button>
-      <button class="cat-btn" onclick="openSection('ghg')" id="catbtn-ghg"><span class="cat-emoji">🌿</span><span class="cat-label">온실가스 현황</span></button>
-    </nav>
+    <div class="window-body">
+      <nav class="cat-nav" aria-label="카테고리">
+        <button class="cat-btn active" onclick="openSection('weather')" id="catbtn-weather"><span class="cat-emoji">🌤️</span><span class="cat-text"><span class="cat-label">현재 날씨</span><span class="cat-sub">오늘 부산 하늘 보기</span></span></button>
+        <button class="cat-btn" onclick="openSection('busan')" id="catbtn-busan"><span class="cat-emoji">🌊</span><span class="cat-text"><span class="cat-label">부산 이슈</span><span class="cat-sub">도시 소식 모아보기</span></span></button>
+        <button class="cat-btn" onclick="openSection('pknu')" id="catbtn-pknu"><span class="cat-emoji">🎓</span><span class="cat-text"><span class="cat-label">부경대 뉴스</span><span class="cat-sub">학교 이야기 확인</span></span></button>
+        <button class="cat-btn" onclick="openSection('welfare')" id="catbtn-welfare"><span class="cat-emoji">💗</span><span class="cat-text"><span class="cat-label">사회복지 통계</span><span class="cat-sub">숫자로 보는 복지</span></span></button>
+        <button class="cat-btn" onclick="openSection('ghg')" id="catbtn-ghg"><span class="cat-emoji">🌿</span><span class="cat-text"><span class="cat-label">온실가스 현황</span><span class="cat-sub">환경 데이터 살펴보기</span></span></button>
+      </nav>
+      <div class="sidebar-note">🐱 왼쪽 메뉴에서 원하는 창을 눌러서 바로 열어볼 수 있어요. 기존 핑크 감성과 윈도우 느낌은 그대로 유지했어요!</div>
+    </div>
+  </aside>
+
+  <article class="window content-window" id="win-main">
+    <div class="window-titlebar">
+      <div class="window-title"><span>📁</span> 나의 기록들 🌸</div>
+      <div class="window-btns" aria-hidden="true">
+        <button class="win-btn close" tabindex="-1"></button>
+        <button class="win-btn min" tabindex="-1"></button>
+        <button class="win-btn max" tabindex="-1"></button>
+      </div>
+    </div>
+    <div class="window-body">
 
     <!-- WEATHER -->
     <section class="section-panel active" id="panel-weather">
